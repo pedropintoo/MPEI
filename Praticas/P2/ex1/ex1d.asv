@@ -1,0 +1,21 @@
+% e completamente independente
+
+probTeorica = 0.5;
+
+% FF (nao conta)
+% FM (nao conta)
+% MF
+% MM
+
+N = 1e6;
+PM = 0.5;
+
+m = rand(2,N) >= PM;
+for i = m
+    
+    primeiroF
+end;
+casosPossiveis = N - sum(sum(m) == 0) - primeiroF;
+sucessos = sum(m) == 2;
+
+prob = sum(sucessos) / casosPossiveis
