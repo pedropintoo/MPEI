@@ -1,0 +1,88 @@
+%% a)
+
+N = 1e6;
+
+xi = 0:4;
+p_cara = 0.5; % probabilidade de sair cara em 1 lancamento
+n = 4;
+
+px = zeros(1,n+1);
+
+for i = xi
+    successos = sum(sum(rand(n,N) < p_cara) == i);
+    pi = successos/N;
+    px(i+1) = pi;
+end
+
+
+stem(xi,px), xlabel("x"), ylabel("px(x)"), axis([0,4 0,1]);
+
+%% b)
+
+E_x = sum(xi.*px);  % E[x]
+
+E_xx = sum((xi.^2).*px); % E[x^2]
+var_x = E_xx - E_x^2;      % var(x) = E[x^2] - E[x]^2
+
+desvio_padrao = sqrt(var_x);
+
+disp("Valor esperado: ~"+E_x);
+disp("Variancia: ~"+var_x);
+disp("Desvio padrao: ~"+desvio_padrao);
+
+%% c)
+
+% Distribuiçao Binomial -> px = C(n,k) * p^k * (1-p)^(n-k)
+
+%% d)
+
+xi = 0:4;
+p_cara = 0.5; % probabilidade de sair cara em 1 lancamento
+n = 4;
+
+px_teorico = zeros(1,n);
+
+for k = xi
+    px_teorico(k+1) = nchoosek(n,k) * p_cara^k * (1-p_cara)^(n-k);
+end
+
+% figure;
+% stem(xi,px_teorico), xlabel("x"), ylabel("px(x)"), axis([0,4 0,1]);
+
+disp("px experimental: ");
+disp(px)
+disp("px teorica: ");
+disp(px_teorico)
+
+%% e)
+
+% Em uma Distribuiçao Binomial -> E[x] = n*p
+%                                 var(x) = n*p*(1-p)
+
+p_cara = 0.5; % probabilidade de sair cara em 1 lancamento
+n = 4;
+
+E_x_teorico = n * p_cara;
+
+var_x_teorico = n * p_cara * (1-p_cara); 
+
+desvio_padrao_teorico = sqrt(var_x_teorico);
+
+disp("Valor esperado: "+E_x_teorico);
+disp("Variancia: "+var_x_teorico);
+disp("Desvio padrao: "+desvio_padrao_teorico);
+
+%% f)
+
+p_i = px_teorico(2+1) + px_teorico(3+1) + px_teorico(4+1);
+
+p_ii = px_teorico(0+1) + px_teorico(1+1);
+
+p_iii = px_teorico(1+1) + px_teorico(2+1) + px_teorico(3);
+
+disp("i. "+p_i);
+disp("ii. "+p_ii);
+disp("iii. "+p_iii);
+
+
+
