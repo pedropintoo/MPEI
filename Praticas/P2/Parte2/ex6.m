@@ -15,7 +15,7 @@ p = 1/1000;
 
 % p ~= lambda / n
 
-lambda = n * p;
+lambda = n * p; % lambda = E[x] = n*p
 
 pX_7_poisson = lambda^k ./ factorial(k) .* exp(-lambda);
 
