@@ -4,12 +4,12 @@
 num_amostras = 1e7;
 
 % exemplo 1
-x = rand(N,1);
+x = rand(num_amostras,1);
 subplot(3,1,1);
 histogram(x,100);
 
 % exemplo 2
-xn = randn(N,1);
+xn = randn(num_amostras,1);
 subplot(3,1,2);
 histogram(xn,100);
 

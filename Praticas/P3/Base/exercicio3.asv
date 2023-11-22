@@ -1,0 +1,25 @@
+%% a)
+
+n_estados=20;
+
+M_rand = rand(n_estados);
+soma = sum(M_rand);
+
+T_aux = repmat(soma,n_estados,1);
+T=M_rand./T_aux;
+
+
+
+% Matriz estocastica -> soma das colunas = 1
+% abs(sum(T) - 1) < 1e-10, pois o matlab faz calculo numerico
+% entao ele pode considerar (por exemplo) 1 ~= 0.99999999
+% para facilitar os arredondamentos
+if all(abs(sum(T) - 1) < 1e-10) & all(T>=0) & all(T<=1)
+    disp("A matriz e estocastica!")
+end
+
+%% b)
+
+v0 = [1 zeros(n_estados-1)];
+v1 = v0 * T;
+v2 = 
