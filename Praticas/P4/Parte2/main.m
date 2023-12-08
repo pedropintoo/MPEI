@@ -1,6 +1,7 @@
 
 n = 8000;
 kValues = 1:20;
+% k otimo seria ~ 5.54 (teriamos de aumentar os valores...)
 
 pfpValues = zeros(size(kValues));
 pfpTeoricaValues = zeros(size(kValues));
@@ -10,10 +11,10 @@ i_max = 250;
 
 INSERIDOS = 1000;
 chars = ['a':'z' 'A':'Z'];
-U_1 = random_strings(INSERIDOS,i_min,i_max,chars,0);
+U_1 = random_strings(INSERIDOS,i_min,i_max,chars);
 
 N_2 = 10000;
-U_2 = random_strings(N_2,i_min,i_max,chars,0);
+U_2 = random_strings(N_2,i_min,i_max,chars);
 
 % commonWords = intersect(U_1, U_2) % Normalmente da zero
 

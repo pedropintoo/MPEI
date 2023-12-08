@@ -1,4 +1,4 @@
-%% 2.a) b) d)
+%% 2.a) b)
 
 nTables = 3;
 nFunctions = 4;
@@ -10,7 +10,7 @@ chars = ['a':'z','A':'Z'];
 i_min = 6;
 i_max = 20;
 % Gerar as chaves
-arrayStrings = random_strings(N, i_min, i_max, chars, 0);
+arrayStrings = random_strings(N, i_min, i_max, chars);
     
 % Guarda os hashcodes para cada tabela de cada funcao
 hashCodes = cell(nTables,nFunctions);
@@ -23,7 +23,6 @@ attributions{3} = zeros(hashTableSizes(3),4);
 
 % Guarda os tempos de execucao
 times = zeros(nTables,nFunctions);
-
 
 for table = 1:nTables
     for func = 1:nFunctions
@@ -41,12 +40,15 @@ end
 
 % Calculo das colisoes
 colisions = zeros(nTables,nFunctions);
+% Maximo das colisoes por funcao
+maxColisions = zeros(nFunctions,1);
 
 for table = 1:nTables
     for func = 1:nFunctions
         colisions(table,func) = sum(attributions{table}(:,func) > 1);
+        maxColisions(func) = max(attributions{table}(:,func));
     end
-    fprintf("A tabela [%d] tem %d colisoes (f1: %d, f2: %d, f3: %d, f4: %d)\n",table,sum(colisions(table,:)),colisions(table,1),colisions(table,2),colisions(table,3),colisions(table,4));
+    fprintf("A tabela [%d] tem %d colisoes (f1: %d, f2: %d, f3: %d, f4: %d) com maximos (f1: %d, f2: %d, f3: %d, f4: %d)\n",table,sum(colisions(table,:)),colisions(table,1),colisions(table,2),colisions(table,3),colisions(table,4),maxColisions);
 end
 
 %% 2.d)
