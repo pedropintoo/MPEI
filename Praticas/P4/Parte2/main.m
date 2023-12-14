@@ -18,6 +18,7 @@ U_2 = random_strings(N_2,i_min,i_max,chars);
 
 % commonWords = intersect(U_1, U_2) % Normalmente da zero
 
+for k = kValues
     %% Inicializar
     BloomFilter = inicializarFiltro(n);
     
@@ -27,10 +28,8 @@ U_2 = random_strings(N_2,i_min,i_max,chars);
         whos BloomFilter
     end
 
-for k = kValues
     %% Adicionar U_1
-    
-    
+     
     for i = 1:length(U_1)
         BloomFilter = adicionarElemento(BloomFilter, U_1{i}, k);
     end
@@ -63,10 +62,12 @@ for k = kValues
     
     pfpTeoricaValues(kValues == k) = pfpTeorica;    
     pfpValues(kValues == k) = pfp;
-
-    % k_otimo = n / INSERIDOS;
     
 end
+
+k_otimo = n * log(2) / INSERIDOS;
+
+fprintf("K otimo: %.3f\n",k_otimo);
 
 plot(kValues, pfpValues, '--o')
 hold on;

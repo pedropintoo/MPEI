@@ -1,41 +1,34 @@
-%% 3.
-udata=load('u.data');          
-u= udata(1:end,1:2); clear udata;
-
-users = unique(u(:,1));
-
-%% 3.a) Criar estrutura dos filmes
+%% Criar estrutura de filmes e utilizadores
 
 tic;
-Set = create_sets(users,u);
-Create_sets_time = toc;
-fprintf("Create sets time: %.3f\n",Create_sets_time)
+[users, Sets] = createSets('u.data'); 
+fprintf("Create Sets time: %.3f\n",toc);
 
-%% 3.b) Calcular as distancias - O QUE VAMOS ALTERAR!
+%% Calcular as distancias
 
 tic;
-M = create_distances_matrix(users,Set);
-Calculating_time = toc;
-fprintf("Calculating time: %.3f\n",Calculating_time)
+M = calcJaccardDistances(users,Sets);
+fprintf("Calculating Distances time: %.3f\n",toc);
 
-save('JaccardDistances.mat',"M");
+imshow(M, 'InitialMagnification', 'fit');
+colorbar;
 
-%% 3.c) Processar conjuntos similares
-threshold = 0;
+%% Determinar pares similares
+
 tic;
+threshold = 0.4;
 SimilarUsers = filterSimilar(users,M,threshold);
-Filtering_time = toc;
+fprintf("Filtering time: %.3f\n",toc);
 
-fprintf("Filtering time: %.3f\n",Filtering_time)
+%% Mostrar pares similares
 
-%% Informacao
-
-if SimilarUsers ~= zeros(1,3)
-    fprintf("N. de pares de utilizadores com distancias < %.2f = %d\n",threshold,size(SimilarUsers,1));
-    for vector = SimilarUsers'
-        fprintf("User1: %d User2: %d -> Jaccard distance: %.3f\n",vector);
-    end
-else
-    fprintf("N. de pares de utilizadores com distancias < %.2f = 0\n",threshold);
+if ~any(SimilarUsers)
+    SimilarUsers = [];
 end
-
+fprintf("\n%d Pares Similares [dist < %.3f]\n",size(SimilarUsers,1),threshold);
+for vector = SimilarUsers'
+   c1 = Sets{vector(1)};
+   c2 = Sets{vector(2)};
+   realDistance = 1 - (size(intersect(c1,c2),1))/(size(union(c1,c2),1));
+   fprintf("%3d - %3d     : Distancia = %.3f | Real = %.3f\n",vector,realDistance);
+end

@@ -4,7 +4,7 @@ function BloomFilter = adicionarElemento(BloomFilter, elemento, k)
     for func = 1:k 
         key = [key num2str(func)];
         hc = string2hash(key);
-        hc = mod(hc,length(BloomFilter)) + 1;
+        hc = mod(hc,length(BloomFilter)) + 1; % queremos indices!
         BloomFilter(hc) = 1;
     end
 end
