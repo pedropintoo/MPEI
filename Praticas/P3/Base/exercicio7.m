@@ -47,7 +47,8 @@ pr
 %% c)
 
 % F e dead end
-H(:,F) = 1/n_estados;
+% vai 'saltar' aleatoriamente para uma das outras paginas
+H(:,F) = 1/n_estados; 
 
 pr = prob;
 for i = 1:10

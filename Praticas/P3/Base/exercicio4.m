@@ -23,7 +23,6 @@ T(B,D) = q*(1-q);
 T(C,D) = q*(1-q);
 T(D,D) = (1-q)^2;
 
-
 disp(T);
 
 % Matriz estocastica -> soma das colunas = 1

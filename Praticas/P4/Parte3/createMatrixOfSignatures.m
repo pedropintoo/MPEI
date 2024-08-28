@@ -14,19 +14,7 @@ function Msign = createMatrixOfSignatures(Sets, v, k)
         x = Sets{u}';
         for hf = 1:k % Temos que guardar os valores de hf para no futuro podermos adicionar elementos
             %% Metodo de Carter and Wegman - universal hf
-            if 0
-                minimum = mod(mod(v.a(hf).*x(1) + v.b(hf) ,v.p),v.M);
-                for f = 2:length(x)
-                    hc = mod(mod(v.a(hf).*x(f) + v.b(hf) ,v.p),v.M);
-                    if (hc < minimum) % minHash
-                        minimum = hc;
-                    end
-                end
-                Msign(hf,u) = minimum; 
-            else
-                Msign(hf,u) = min(mod(mod(v.a(hf).*x + v.b(hf) ,v.p),v.M)); % minHash
-            end
-            
+            Msign(hf,u) = min(mod(mod(v.a(hf).*x + v.b(hf) ,v.p),v.M)); % minHash
         end
     end
     

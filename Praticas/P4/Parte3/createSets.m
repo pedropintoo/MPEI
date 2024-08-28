@@ -1,4 +1,4 @@
-function [users, Sets] = createSets(filename)
+ function [users, Sets] = createSets(filename)
     % Cria a estrutura de filmes e utilizadores
     h=waitbar(0,'Creating Sets...');
 

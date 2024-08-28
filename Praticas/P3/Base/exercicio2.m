@@ -5,7 +5,6 @@ GRUPO_A = 1;
 GRUPO_B = 2;
 GRUPO_C = 2;
 
-
 %     A    B   C
 T = [ 1/3 1/4 0
       1/3 11/20 1/2

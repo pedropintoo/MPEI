@@ -7,7 +7,7 @@ hist(x,100);
 
 [counts, centers] = hist(x,100);
 
-stem(centers,p);
+stem(centers,counts);
 
 %% Outra solucao
 

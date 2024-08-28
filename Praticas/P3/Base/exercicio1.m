@@ -8,7 +8,6 @@ FALTAR = 2;
 T = [0.7 0.8
      0.3 0.2];
 
-
 %% 1. a)
 
 % vetor estado incial
@@ -43,7 +42,7 @@ disp("P_b="+v2(NAO_FALTAR));
 v0 = [0 0]';
 v0(NAO_FALTAR) = 1;
 
-% vetor estado apos 14 transiçoes (vn = T^n * v0)
+% vetor estado apos 29 transiçoes (vn = T^n * v0)
 v29 = T^29 * v0;
 % Probabilidade de nao faltar depois de 2 transicoes
 disp("P_c="+v29(NAO_FALTAR));

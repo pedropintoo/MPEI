@@ -98,23 +98,23 @@ N = 1e4;
 myCell = {};
 
 n_transientes = 3;
-%                     (1) (2) (4)
-state = discrete_rnd([Tr1 Tr2 Tr3], ones(n_transientes,1)/n_transientes);
 
 % estado incial: state
 n_transicoes = 0;
 for i = 1:N
+    %                     (1) (2) (4)
+    state = discrete_rnd([Tr1 Tr2 Tr3], ones(n_transientes,1)/n_transientes);
     list_states = crawl(T, state, [Ab1 Ab2]);
     myCell{end+1}=list_states;
 end
 
-minLength = length(myCell{1});
-maxLength = length(myCell{1});
+minLength = length(myCell{1})-1;
+maxLength = length(myCell{1})-1;
 
 
 % Iterate through each cell starting from the second cell
 for i = 2:length(myCell)
-    currentLength = length(myCell{i});
+    currentLength = length(myCell{i})-1;
     
     % Update
     minLength = min(minLength, currentLength);
